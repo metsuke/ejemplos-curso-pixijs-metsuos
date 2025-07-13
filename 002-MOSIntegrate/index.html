@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css">
+    <title>PixiJS - Template</title>
+    <style type='text/css'>
+        .pixi-app {
+            position: relative;
+            width: 90vw;
+            max-width: 1140px;
+            aspect-ratio: 4 / 3;
+            }
+
+            .pixi-container {
+            width: 90vw;
+            height: 100%;
+            position: relative;
+            border: 1px solid #4a2f1f;
+            border-top: 20px solid #4a2f1f;
+            }
+
+            .pixi-container canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+
+            }
+    </style>
+</head>
+
+<body>
+    <div class='pixi-app' id='mos-integration'>
+        <div class='pixi-container' id='pixi-container'>
+        </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
