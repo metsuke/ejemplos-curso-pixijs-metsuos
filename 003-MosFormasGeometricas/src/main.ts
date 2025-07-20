@@ -38,13 +38,29 @@ import { Application, Graphics } from "pixi.js";
 
   // Círculo en movimiento (azul celeste)
   const movingCircle = new Graphics();
-  movingCircle.beginFill(0x00FFFF);
-  movingCircle.drawCircle(0, 0, 50); // Draw at (0, 0) relative to its own position
+  let isCyan = true; // Track color state (true for cyan, false for green)
+
+  // Draw initial circle
+  movingCircle.beginFill(0x00ffff);
+  movingCircle.drawCircle(0, 0, 50);
   movingCircle.endFill();
 
   // Posición inicial
   movingCircle.x = 100;
   movingCircle.y = 350;
+
+  // Habilitar interactividad
+  movingCircle.interactive = true;
+  movingCircle.buttonMode = true; // Cursor de botón
+
+  // Toggle color on click
+  movingCircle.on("pointerdown", () => {
+    movingCircle.clear();
+    isCyan = !isCyan; // Toggle color state
+    movingCircle.beginFill(isCyan ? 0x00ffff : 0x00ff00); // Cyan or green
+    movingCircle.drawCircle(0, 0, 50);
+    movingCircle.endFill();
+  });
 
   app.stage.addChild(movingCircle);
 
