@@ -51,7 +51,7 @@ import { Application, Graphics } from "pixi.js";
 
   // Habilitar interactividad
   movingCircle.interactive = true;
-  movingCircle.buttonMode = true; // Cursor de botón
+  movingCircle.cursor = "pointer"; // Use cursor instead of buttonMode
 
   // Toggle color on click
   movingCircle.on("pointerdown", () => {
