@@ -9,8 +9,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: "src/main.js", // Cambia esto al archivo de entrada de tu proyecto (por ejemplo, src/app.js)
-      name: "003-mosformasgeometricas", // Nombre global de tu app (se expondrá en window.MyPixiApp si es necesario)
-      fileName: "app-003-mosformasgeometricas", // Nombre del archivo de salida (sin extensión)
+      name: "mosformasgeometricas", // Nombre global de tu app (se expondrá en window.MyPixiApp si es necesario)
+      fileName: "app-mosformasgeometricas", // Nombre del archivo de salida (sin extensión)
       formats: ["iife"], // Formato IIFE para vanilla JS
     },
     outDir: "dist", // Carpeta de salida para el bundle

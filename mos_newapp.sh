@@ -74,7 +74,7 @@ fi
 echo "Copia creada exitosamente: $new_folder"
 
 # Actualiza datos del fichero vite.config.js
-nombre_proyecto=$(echo "$new_folder" | tr '[:upper:]' '[:lower:]')
+nombre_proyecto=$(echo "$new_name" | tr '[:upper:]' '[:lower:]')
 mos_vite_file="$new_folder/vite.config.ts"
 echo "Ajustando $mos_vite_file"
 if [ -f "$mos_vite_file" ]; then
