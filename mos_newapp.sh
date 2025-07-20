@@ -73,6 +73,34 @@ if [ $? -ne 0 ]; then
 fi
 echo "Copia creada exitosamente: $new_folder"
 
+# Actualiza datos del fichero vite.config.js
+nombre_proyecto=$(echo "$new_folder" | tr '[:upper:]' '[:lower:]')
+mos_vite_file="$new_folder/vite.config.ts"
+echo "Ajustando $mos_vite_file"
+if [ -f "$mos_vite_file" ]; then
+    awk -v old="MOSIntegrate" -v new="$nombre_proyecto" '{gsub(old, new); print}' "$mos_vite_file" > "${mos_vite_file}.tmp" && mv "${mos_vite_file}.tmp" "$mos_vite_file"
+    awk -v old="mos-integrate" -v new="$nombre_proyecto" '{gsub(old, new); print}' "$mos_vite_file" > "${mos_vite_file}.tmp" && mv "${mos_vite_file}.tmp" "$mos_vite_file"
+    if [ $? -eq 0 ]; then
+        echo "Éxito VITE: se actualizó el archivo vite.config.js correctamente."
+    else
+        echo "Error VITE: No se pudo actualizar el archivo vite.config.js"
+        exit 1
+    fi
+fi
+
+# Actualiza el nombre del proyecto en package.json
+nombre_proyecto=$(echo "$new_folder" | tr '[:upper:]' '[:lower:]')
+mos_package_file="$new_folder/package.json"
+if [ -f "$mos_package_file" ]; then
+    awk -v old="002-mosintegrate" -v new="$nombre_proyecto" '{gsub(old, new); print}' "$mos_package_file" > "${mos_package_file}.tmp" && mv "${mos_package_file}.tmp" "$mos_package_file"
+    if [ $? -eq 0 ]; then
+        echo "Éxito JSON: se actualizó el archivo package.json correctamente."
+    else
+        echo "Error JSON: No se pudo actualizar el archivo package.json"
+        exit 1
+    fi
+fi
+
 # Actualiza el archivo mos_compile.sh en la nueva carpeta
 echo "Buscando el archivo mos_compile.sh en la nueva carpeta..."
 mos_compile_file="$new_folder/mos_compile.sh"
@@ -93,6 +121,8 @@ else
     echo "Error: No se encontró el archivo mos_compile.sh en $new_folder."
     exit 1
 fi
+# Tras modificarlo marcamos como ejecutable
+chmod +x "$mos_compile_file"
 
 # Cambiar al directorio de la nueva carpeta e instalar dependencias
 echo "Cambiando al directorio $new_folder e instalando dependencias..."
