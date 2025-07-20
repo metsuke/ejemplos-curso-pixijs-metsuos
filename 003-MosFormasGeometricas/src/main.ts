@@ -35,4 +35,22 @@ import { Application, Graphics } from "pixi.js";
   graphics.endFill();
 
   app.stage.addChild(graphics);
+
+  // Círculo en movimiento (azul celeste)
+  const movingCircle = new Graphics();
+  movingCircle.beginFill(0x00FFFF);
+  movingCircle.drawCircle(0, 0, 50); // Draw at (0, 0) relative to its own position
+  movingCircle.endFill();
+
+  // Posición inicial
+  movingCircle.x = 100;
+  movingCircle.y = 350;
+
+  app.stage.addChild(movingCircle);
+
+  // Animación
+  app.ticker.add(() => {
+    movingCircle.x += 2; // Mover a la derecha
+    if (movingCircle.x > app.screen.width) movingCircle.x = 0; // Reiniciar
+  });
 })();
