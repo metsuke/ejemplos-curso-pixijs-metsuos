@@ -31,9 +31,9 @@ new_name=$(echo "$step3" | tr -d '-')
 echo "Nombre convertido: $new_name"
 
 # Busca el número más alto en las carpetas con el patrón *-MOSIntegrate
-echo "Buscando la carpeta con el número más alto en el formato [0-9][0-9][0-9]-MOSIntegrate..."
+echo "Buscando la carpeta con el número más alto en el formato [0-9][0-9][0-9]-*..."
 highest_num=0
-for folder in [0-9][0-9][0-9]-MOSIntegrate; do
+for folder in [0-9][0-9][0-9]-*; do
     if [ -d "$folder" ]; then
         num=${folder%%-*}
         if [[ $num =~ ^[0-9]+$ ]] && [ $num -gt $highest_num ]; then
